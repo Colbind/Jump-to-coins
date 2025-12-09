@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jump to coins</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hud">
+    <div class="hud-item">Время: <span id="timer">60</span>s</div>
+    <div class="hud-item">Монеты: <span id="coins">0</span></div>
+    <div class="hud-item">Игрок: <span id="playerNameDisplay">Гость</span></div>
+    <button id="startBtn">Старт</button>
+    <button id="restartBtn">Перезапустить</button>
+  </header>
+
+  <main class="game-layout">
+    <section class="game-area">
+      <canvas id="gameCanvas" width="720" height="480"></canvas>
+
+      <div class="controls">
+        <button class="btn-dir" id="upBtn">↑</button>
+        <div class="row">
+          <button class="btn-dir" id="leftBtn">←</button>
+          <button class="btn-dir" id="downBtn">↓</button>
+          <button class="btn-dir" id="rightBtn">→</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <h3>Настройки</h3>
+      <label>Имя игрока
+        <input id="playerName" type="text" placeholder="Введите имя" />
+      </label>
+      <button id="setNameBtn">Установить имя</button>
+
+      <label>Уровень
+        <select id="levelSelect"></select>
+      </label>
+
+      <hr />
+
+      <h4>Вход администратора</h4>
+      <label>Пароль
+        <input id="adminPass" type="password" placeholder="••••" />
+      </label>
+      <button id="adminLoginBtn">Войти как админ</button>
+      <button id="adminLogoutBtn" class="hidden">Выйти</button>
+
+      <div id="adminPanelBtnWrap" class="hidden">
+        <button id="openAdminPanel">Панель админа</button>
+      </div>
+
+      <div id="statusBox" class="status-box">Статус: готов</div>
+
+      <hr />
+
+      <div>
+        <strong>Забаненные игроки:</strong>
+        <ul id="bannedList"></ul>
+      </div>
+    </aside>
+  </main>
+
+  <div id="overlay" class="overlay hidden">
+    <div class="overlay-content">
+      <h2 id="overlayTitle">Игра окончена</h2>
+      <p id="overlayText"></p>
+      <button id="overlayRestart">Играть ещё</button>
+    </div>
+  </div>
+
+  <div id="adminPanel" class="overlay hidden">
+    <div class="overlay-content">
+      <button id="adminCloseX" class="close-x" aria-label="Закрыть панель">✖</button>
+      <h2>Панель администратора</h2>
+
+      <div class="admin-row">
+        <label>Начислить себе монет:
+          <input id="adminSelfAmount" type="number" min="1" value="10" />
+        </label>
+        <button id="adminGiveSelf">Начислить</button>
+      </div>
+
+      <div class="admin-row">
+        <label>Отчислить себе монет:
+          <input id="adminSelfDeduct" type="number" min="1" value="5" />
+        </label>
+        <button id="adminDeductSelf">Отнять</button>
+      </div>
+
+      <div class="admin-row">
+        <label>Забанить игрока:
+          <input id="adminBanName" type="text" placeholder="имя игрока" />
+        </label>
+        <button id="adminBanBtn">Забанить</button>
+      </div>
+
+      <div class="admin-row">
+        <label>Начислить игроку:
+          <input id="adminGiveName" type="text" placeholder="имя" />
+          <input id="adminGiveAmount" type="number" min="1" value="50" />
+        </label>
+        <button id="adminGiveBtn">Начислить</button>
+      </div>
+
+      <div class="admin-row">
+        <label>Отчислить игроку:
+          <input id="adminDeductName" type="text" placeholder="имя" />
+          <input id="adminDeductAmount" type="number" min="1" value="10" />
+        </label>
+        <button id="adminDeductBtn">Отнять</button>
+      </div>
+
+      <div style="margin-top:12px;">
+        <button id="adminClose">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
